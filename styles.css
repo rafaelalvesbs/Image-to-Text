@@ -44,6 +44,7 @@ body {
     margin-bottom: 24px;
 }
 
+/* Botão upload */
 .upload-area {
     background: #ffffff;
     color: #0033aa;
@@ -67,6 +68,7 @@ body {
     display: none;
 }
 
+/* Loader */
 .loader {
     width: 60px;
     height: 60px;
@@ -75,6 +77,8 @@ body {
     background: conic-gradient(#fff 10%, rgba(255,255,255,0.07));
     animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
 }
+
+.hidden { display: none !important; }
 
 @keyframes spin {
     to { transform: rotate(360deg); }
@@ -85,6 +89,7 @@ body {
     50%      { filter: drop-shadow(0 0 14px #fff); }
 }
 
+/* Caixa de texto */
 .output {
     background: #ffffff;
     color: #000;
@@ -105,22 +110,22 @@ body {
     to   { opacity: 1; transform: translateY(0); }
 }
 
-/* Botão de copiar */
+/* Botão copiar */
 .copy-btn {
+    width: 100%;
     margin-top: 15px;
-    padding: 12px 18px;
+    padding: 12px;
     background: #ffffff;
+    color: #0033aa;
+    font-weight: 600;
     border: none;
     border-radius: 12px;
-    font-size: 15px;
-    font-weight: 600;
+    font-size: 16px;
     cursor: pointer;
-    color: #0033aa;
     transition: 0.25s ease;
-    width: 100%;
 }
 
 .copy-btn:hover {
     transform: scale(1.03);
-    box-shadow: 0 0 14px rgba(255,255,255,0.4);
+    background: #f3f3f3;
 }
