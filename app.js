@@ -1,42 +1,45 @@
-const input = document.getElementById("imageInput");
+const imageInput = document.getElementById("imageUpload");
 const loader = document.getElementById("loader");
 const output = document.getElementById("output");
+const resultContainer = document.getElementById("result-container");
 
-let worker = null;
+imageInput.addEventListener("change", async () => {
+    const file = imageInput.files[0];
 
-// Carrega apenas 1 vez (muito mais rápido)
-async function initWorker() {
-    if (!worker) {
-        worker = await Tesseract.createWorker("eng", 1, {
-            corePath: "https://cdn.jsdelivr.net/npm/tesseract.js-core@5/tesseract-core.wasm.js"
-        });
-    }
-}
-
-initWorker();
-
-input.addEventListener("change", async () => {
-    const file = input.files[0];
     if (!file) return;
 
-    if (!file.type.match(/image\/(png|jpe?g)/)) {
-        output.style.opacity = 1;
-        output.textContent = "Erro: envie uma imagem PNG ou JPG.";
-        return;
-    }
-
-    loader.style.display = "block";
-    output.style.opacity = 0;
+    // mostra loader
+    loader.classList.remove("hidden");
+    resultContainer.classList.add("hidden");
     output.textContent = "";
 
     try {
-        const result = await worker.recognize(file);
-        output.textContent = result.data.text.trim();
-    } catch (e) {
-        output.textContent = "Ocorreu um erro ao processar a imagem.";
-        console.error(e);
+        const worker = await Tesseract.createWorker("por", 1);
+
+        const { data } = await worker.recognize(file);
+
+        output.textContent = data.text;
+        resultContainer.classList.remove("hidden");
+
+        await worker.terminate();
+    } catch (err) {
+        output.textContent = "Erro ao processar a imagem.";
+        resultContainer.classList.remove("hidden");
     }
 
-    loader.style.display = "none";
-    output.style.opacity = 1;
+    loader.classList.add("hidden");
+});
+
+/* COPIAR TEXTO */
+document.getElementById("copyBtn").addEventListener("click", () => {
+    const text = output.innerText;
+
+    if (!text.trim()) {
+        alert("Nenhum texto para copiar!");
+        return;
+    }
+
+    navigator.clipboard.writeText(text)
+        .then(() => alert("Texto copiado!"))
+        .catch(() => alert("Erro ao copiar."));
 });
