@@ -1,31 +1,27 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Image to Text</title>
-    <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Conversor de Imagem para Texto</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body>
-
-<div class="wrapper">
-    <h1 class="title">Image to Text</h1>
-    <p class="subtitle">Envie uma imagem e extraia o texto rapidamente</p>
-
-    <label class="upload-area">
-        Enviar imagem
-        <input type="file" id="imageUpload" accept="image/png, image/jpg, image/jpeg">
-    </label>
-
-    <div id="loader" class="loader hidden"></div>
-
-    <div id="result-container" class="hidden">
-        <div id="output" class="output"></div>
-        <button id="copyBtn" class="copy-btn hidden">Copiar texto</button>
+  <div class="container">
+    <h1>Conversor de Imagem para Texto</h1>
+    
+    <input type="file" id="imageInput" accept="image/*">
+    
+    <button id="convertBtn">Converter</button>
+    
+    <div class="preview">
+      <img id="previewImg" src="" alt="Pré-visualização">
     </div>
-</div>
+    
+    <textarea id="outputText" placeholder="O texto extraído aparecerá aqui..." readonly></textarea>
+  </div>
 
-<script src="app.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@4.0.2/dist/tesseract.min.js"></script>
+  <script src="script.js"></script>
 </body>
 </html>
