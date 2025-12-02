@@ -46,4 +46,12 @@ imageInput.addEventListener("change", async () => {
 
 // Copiar texto
 copyBtn.addEventListener("click", () => {
-    const text = output.innerTe
+    const text = output.innerText.trim();
+    if (!text) {
+        alert("Nenhum texto para copiar!");
+        return;
+    }
+    navigator.clipboard.writeText(text)
+        .then(() => alert("Texto copiado!"))
+        .catch(() => alert("Erro ao copiar."));
+});
