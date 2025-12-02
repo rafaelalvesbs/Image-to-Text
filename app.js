@@ -8,7 +8,6 @@ imageInput.addEventListener("change", async () => {
 
     if (!file) return;
 
-    // mostra loader
     loader.classList.remove("hidden");
     resultContainer.classList.add("hidden");
     output.textContent = "";
