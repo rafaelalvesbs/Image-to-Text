@@ -4,26 +4,29 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Image to Text</title>
+
     <link rel="stylesheet" href="styles.css" />
+    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
+
 <body>
+    <div class="wrapper">
+        <h1 class="title">Image to Text</h1>
+        <p class="subtitle">Transforme qualquer imagem em texto rapidamente.</p>
 
-<div class="wrapper">
-    <h1 class="title">Image to Text</h1>
-    <p class="subtitle">Upload an image and extract the text instantly</p>
+        <label class="upload-area">
+            Enviar imagem
+            <input type="file" id="imageUpload" accept="image/png, image/jpg, image/jpeg">
+        </label>
 
-    <label class="upload-area">
-        Select Image
-        <input type="file" id="imageInput" accept="image/*">
-    </label>
+        <div id="loader" class="loader hidden"></div>
 
-    <div id="loader" class="loader" style="display:none;"></div>
+        <div id="result-container" class="hidden">
+            <div id="output" class="output"></div>
+            <button id="copyBtn" class="copy-btn">Copiar texto</button>
+        </div>
+    </div>
 
-    <div id="output" class="output" style="display:none;"></div>
-
-    <button id="copyBtn" style="display:none;" class="copy-btn">Copiar Texto</button>
-</div>
-
-<script src="app.js"></script>
+    <script src="app.js"></script>
 </body>
 </html>
