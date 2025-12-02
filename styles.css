@@ -1,0 +1,109 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: "Inter", "Segoe UI", Arial, sans-serif;
+    background: linear-gradient(145deg, #3f7bff, #002fa7);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 22px;
+    color: #fff;
+}
+
+.wrapper {
+    background: rgba(255, 255, 255, 0.10);
+    backdrop-filter: blur(14px);
+    padding: 28px;
+    width: 100%;
+    max-width: 440px;
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 35px rgba(0,0,0,0.25);
+    animation: fadeIn 0.8s ease-in-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(25px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
+
+.title {
+    font-size: 26px;
+    margin-bottom: 8px;
+    font-weight: 600;
+}
+
+.subtitle {
+    font-size: 14px;
+    opacity: 0.9;
+    margin-bottom: 24px;
+}
+
+/* Botão de upload moderno */
+.upload-area {
+    background: #ffffff;
+    color: #0033aa;
+    padding: 16px;
+    width: 100%;
+    border-radius: 14px;
+    cursor: pointer;
+    font-size: 17px;
+    display: block;
+    margin-bottom: 22px;
+    transition: 0.25s ease;
+    font-weight: 600;
+}
+
+.upload-area:hover {
+    transform: scale(1.03);
+    box-shadow: 0 0 14px rgba(255,255,255,0.4);
+}
+
+.upload-area input {
+    display: none;
+}
+
+/* Loader moderno com glow suave */
+.loader {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    margin: 20px auto;
+    background: conic-gradient(#fff 10%, rgba(255,255,255,0.07));
+    animation: spin 1s linear infinite, glow 2s ease-in-out infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
+@keyframes glow {
+    0%, 100% { filter: drop-shadow(0 0 5px #fff); }
+    50%      { filter: drop-shadow(0 0 14px #fff); }
+}
+
+/* Caixa de texto com animação suave */
+.output {
+    background: #ffffff;
+    color: #000;
+    padding: 15px;
+    border-radius: 12px;
+    margin-top: 20px;
+    font-size: 15px;
+    white-space: pre-wrap;
+    text-align: left;
+    max-height: 440px;
+    overflow-y: auto;
+    opacity: 0;
+    animation: textFade 0.9s ease forwards;
+}
+
+@keyframes textFade {
+    from { opacity: 0; transform: translateY(10px); }
+    to   { opacity: 1; transform: translateY(0); }
+}
