@@ -9,22 +9,24 @@
 </head>
 
 <body>
-    <div class="container">
-        <h1>Conversor de Imagem para Texto</h1>
-        <p class="subtitle">Envie uma imagem e veja o texto aparecer abaixo.</p>
+    <div class="wrapper">
+        <div class="card">
+            <h1 class="title">OCR Converter</h1>
+            <p class="subtitle">Transforme qualquer imagem em texto de forma rápida e intuitiva.</p>
 
-        <label for="imageUpload" class="upload-btn">Escolher imagem</label>
-        <input type="file" id="imageUpload" accept="image/png, image/jpg, image/jpeg" />
+            <label for="imageUpload" class="upload-btn">Enviar imagem</label>
+            <input type="file" id="imageUpload" accept="image/png, image/jpg, image/jpeg" />
 
-        <div id="loader" class="hidden">
-            <div class="spinner"></div>
-        </div>
+            <div id="loader" class="hidden">
+                <div class="loader-circle"></div>
+            </div>
 
-        <div id="result-container" class="hidden">
-            <h3>Texto extraído:</h3>
-            <pre id="output"></pre>
+            <div id="result-container" class="hidden">
+                <h3 class="section-title">Texto detectado</h3>
+                <pre id="output"></pre>
 
-            <button id="copyBtn" class="copy-btn">Copiar texto</button>
+                <button id="copyBtn" class="copy-btn">Copiar texto</button>
+            </div>
         </div>
     </div>
 
