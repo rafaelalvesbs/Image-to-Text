@@ -1,57 +1,41 @@
-const imageInput = document.getElementById("imageUpload");
-const loader = document.getElementById("loader");
-const output = document.getElementById("output");
-const resultContainer = document.getElementById("result-container");
-const copyBtn = document.getElementById("copyBtn");
+const imageInput = document.getElementById('imageInput');
+const previewImg = document.getElementById('previewImg');
+const convertBtn = document.getElementById('convertBtn');
+const outputText = document.getElementById('outputText');
 
-imageInput.addEventListener("change", async () => {
-    const file = imageInput.files[0];
-    if (!file) return;
+let selectedImage = null;
 
-    // Mostra loader e esconde resultados
-    loader.classList.remove("hidden");
-    resultContainer.classList.add("hidden");
-    copyBtn.classList.add("hidden");
-    output.style.opacity = 0;
-    output.textContent = "";
-
-    try {
-        const worker = await Tesseract.createWorker({
-            logger: m => console.log(m)
-        });
-
-        await worker.load();
-        await worker.loadLanguage("por");
-        await worker.initialize("por");
-
-        const { data } = await worker.recognize(file);
-
-        output.textContent = data.text.trim();
-        loader.classList.add("hidden");
-
-        resultContainer.classList.remove("hidden");
-        output.style.opacity = 1;
-        copyBtn.classList.remove("hidden");
-
-        await worker.terminate();
-    } catch (err) {
-        console.error(err);
-        loader.classList.add("hidden");
-        output.textContent = "Erro ao processar a imagem.";
-        resultContainer.classList.remove("hidden");
-        copyBtn.classList.add("hidden");
-        output.style.opacity = 1;
+// Mostrar pré-visualização da imagem
+imageInput.addEventListener('change', (e) => {
+  const file = e.target.files[0];
+  if (file) {
+    const reader = new FileReader();
+    reader.onload = function(event) {
+      previewImg.src = event.target.result;
+      previewImg.style.display = 'block';
+      selectedImage = event.target.result;
     }
+    reader.readAsDataURL(file);
+  }
 });
 
-// Copiar texto
-copyBtn.addEventListener("click", () => {
-    const text = output.innerText.trim();
-    if (!text) {
-        alert("Nenhum texto para copiar!");
-        return;
-    }
-    navigator.clipboard.writeText(text)
-        .then(() => alert("Texto copiado!"))
-        .catch(() => alert("Erro ao copiar."));
+// Converter imagem para texto
+convertBtn.addEventListener('click', () => {
+  if (!selectedImage) {
+    alert("Por favor, selecione uma imagem primeiro!");
+    return;
+  }
+
+  outputText.value = "Processando...";
+
+  Tesseract.recognize(
+    selectedImage,
+    'por', // linguagem PT-BR
+    { logger: m => console.log(m) }
+  ).then(({ data: { text } }) => {
+    outputText.value = text;
+  }).catch(err => {
+    outputText.value = "Erro ao processar a imagem.";
+    console.error(err);
+  });
 });
