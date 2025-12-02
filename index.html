@@ -3,34 +3,27 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Conversor de Imagem para Texto</title>
+    <title>Image to Text</title>
     <link rel="stylesheet" href="styles.css" />
-    <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
 </head>
-
 <body>
-    <div class="wrapper">
-        <div class="card">
-            <h1 class="title">OCR Converter</h1>
-            <p class="subtitle">Transforme qualquer imagem em texto de forma rápida e intuitiva.</p>
 
-            <label for="imageUpload" class="upload-btn">Enviar imagem</label>
-            <input type="file" id="imageUpload" accept="image/png, image/jpg, image/jpeg" />
+<div class="wrapper">
+    <h1 class="title">Image to Text</h1>
+    <p class="subtitle">Upload an image and extract the text instantly</p>
 
-            <div id="loader" class="hidden">
-                <div class="loader-circle"></div>
-            </div>
+    <label class="upload-area">
+        Select Image
+        <input type="file" id="imageInput" accept="image/*">
+    </label>
 
-            <div id="result-container" class="hidden">
-                <h3 class="section-title">Texto detectado</h3>
-                <pre id="output"></pre>
+    <div id="loader" class="loader" style="display:none;"></div>
 
-                <button id="copyBtn" class="copy-btn">Copiar texto</button>
-            </div>
-        </div>
-    </div>
+    <div id="output" class="output" style="display:none;"></div>
 
-    <script src="app.js"></script>
+    <button id="copyBtn" style="display:none;" class="copy-btn">Copiar Texto</button>
+</div>
+
+<script src="app.js"></script>
 </body>
 </html>
-
